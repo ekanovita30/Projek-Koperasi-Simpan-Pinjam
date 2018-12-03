@@ -159,10 +159,10 @@ public class frame1 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          try {
-            sql = "SELECT username,password FROM admin WHERE username='"+text_name.getText()+"' AND password='"+jPasswordField1.getText()+"'";
+            sql = "SELECT username,pasword FROM anggota WHERE username='"+text_name.getText()+"' AND pasword='"+jPasswordField1.getText()+"'";
             rs = stat.executeQuery(sql);
             if(rs.next()){
-                if(text_name.getText().equals(rs.getString("username")) && jPasswordField1.getText().equals(rs.getString("password"))){
+                if(text_name.getText().equals(rs.getString("username")) && jPasswordField1.getText().equals(rs.getString("pasword"))){
                     JOptionPane.showMessageDialog(null, "berhasil login");
                     frame2 fu =new frame2();
                     fu.setVisible(true);

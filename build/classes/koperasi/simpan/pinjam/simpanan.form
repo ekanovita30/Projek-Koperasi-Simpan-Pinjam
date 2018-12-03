@@ -149,10 +149,10 @@
                       <Component id="jLabel5" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                       <Component id="combolist" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <Component id="date_text" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="date_text" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
@@ -252,7 +252,7 @@
         <Component class="javax.swing.JTextField" name="name_text">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
-            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="name_textActionPerformed"/>
@@ -273,7 +273,8 @@
         </Component>
         <Component class="javax.swing.JTextField" name="date_text">
           <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="date_textActionPerformed"/>
