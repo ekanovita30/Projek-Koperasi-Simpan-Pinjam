@@ -5,12 +5,11 @@
  */
 package koperasi.simpan.pinjam;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import javax.swing.JOptionPane;
 /**
  *
  * @author mafia
@@ -19,17 +18,14 @@ public class config {
 
     public static Connection con;
     public static Statement stm;
-    public static void main(String args[]){
+
+    public void config() {
         try {
-            String url ="jdbc:mysql://localhost/koperasi";
-            String user="mafia";
-            String pass="123456";
             Class.forName("com.mysql.jdbc.Driver");
-            con =(Connection) DriverManager.getConnection(url,user,pass);
+            con = DriverManager.getConnection("jdbc:mysql://localhost/koperasi", "root", " ");
             stm = con.createStatement();
-            System.out.println("koneksi berhasil;");
-        } catch (ClassNotFoundException | SQLException e) {
-            System.err.println("koneksi gagal" +e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "koneksi gagal " + e.getMessage());
         }
     }
 }

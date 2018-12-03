@@ -5,17 +5,29 @@
  */
 package koperasi.simpan.pinjam;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author eca
  */
 public class frame1 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frame1
-     */
+    Connection con;
+    Statement stat;
+    ResultSet rs;
+    String sql;
+
     public frame1() {
         initComponents();
+        //pemanggilan fungsi koneksi database yang sudah kita buat pada class koneksi.java
+        config DB = new config();
+        DB.config();
+        con = DB.con;
+        stat = DB.stm;
     }
 
     /**
@@ -29,7 +41,7 @@ public class frame1 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        text_name = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -40,6 +52,15 @@ public class frame1 extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
         jPanel1.setForeground(new java.awt.Color(51, 0, 0));
+        jPanel1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+                jPanel1AncestorRemoved(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
         jLabel1.setText("FORM LOGIN");
@@ -88,7 +109,7 @@ public class frame1 extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
+                    .addComponent(text_name)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
                 .addGap(76, 76, 76))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -106,7 +127,7 @@ public class frame1 extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(text_name, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -137,12 +158,31 @@ public class frame1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+         try {
+            sql = "SELECT username,password FROM admin WHERE username='"+text_name.getText()+"' AND password='"+jPasswordField1.getText()+"'";
+            rs = stat.executeQuery(sql);
+            if(rs.next()){
+                if(text_name.getText().equals(rs.getString("username")) && jPasswordField1.getText().equals(rs.getString("password"))){
+                    JOptionPane.showMessageDialog(null, "berhasil login");
+                    frame2 fu =new frame2();
+                    fu.setVisible(true);
+                    
+                }
+            }else{
+                    JOptionPane.showMessageDialog(null, "username atau password salah");
+                }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void jPanel1AncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorRemoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel1AncestorRemoved
 
     /**
      * @param args the command line arguments
@@ -187,6 +227,6 @@ public class frame1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField text_name;
     // End of variables declaration//GEN-END:variables
 }
