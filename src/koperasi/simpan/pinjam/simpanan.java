@@ -98,7 +98,7 @@ public class simpanan extends javax.swing.JFrame {
         jLabel5.setText("jenis simpanan : ");
 
         combolist.setEditable(true);
-        combolist.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pokok", "wajib", "sukarela" }));
+        combolist.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pokok", "sukarela" }));
         combolist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combolistActionPerformed(evt);
